@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "refinedstorage_emi_integration",
+  "version": "${version}",
+  "name": "Refined Storage - EMI Integration",
+  "description": "EMI integration for Refined Storage.",
+  "authors": [
+    "Refined Mods"
+  ],
+  "contact": {
+    "sources": "https://github.com/refinedmods/refinedstorage-emi-integration",
+    "issues": "https://github.com/refinedmods/refinedstorage-emi-integration/issues"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "emi": [
+      "com.refinedmods.refinedstorage.emi.common.RefinedStorageEmiPlugin"
+    ],
+    "refinedstorage_plugin": [
+      "com.refinedmods.refinedstorage.emi.fabric.EmiRefinedStoragePlugin"
+    ]
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discordapp.com/invite/VYzsydb"
+      },
+      "parent": "refinedstorage2"
+    }
+  },
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric-api": "*",
+    "minecraft": "~1.20.4",
+    "emi": ">=1.1.7",
+    "java": ">=17"
+  }
+}

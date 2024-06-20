@@ -1,0 +1,37 @@
+archivesBaseName = 'refinedstorage-emi-integration-fabric'
+
+fabricProject("refinedstorage_emi_integration", project(":refinedstorage-emi-integration-common"))
+
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage2")
+        credentials {
+            username = "anything"
+            password = "\u0067hp_oGjcDFCn8jeTzIj4Ke9pLoEVtpnZMP4VQgaX"
+        }
+    }
+    maven {
+        name = 'ModMenu'
+        url 'https://maven.terraformersmc.com/'
+    }
+    maven {
+        name = 'Cloth Config'
+        url 'https://maven.shedaniel.me/'
+    }
+    maven {
+        name = 'NoIndium'
+        url = 'https://maven.cafeteria.dev/releases/'
+    }
+    maven {
+        name = "EMI"
+        url = "https://maven.terraformersmc.com/"
+    }
+}
+
+dependencies {
+    modApi "com.refinedmods.refinedstorage2:refinedstorage2-platform-fabric:${refinedstorageVersion}"
+    modRuntimeOnly "dev.emi:emi-fabric:${emiVersion}"
+    modCompileOnlyApi "dev.emi:emi-fabric:${emiVersion}:api"
+}
+
+enablePublishing()

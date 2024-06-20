@@ -1,0 +1,28 @@
+plugins {
+    id 'java-library'
+}
+
+archivesBaseName = 'refinedstorage-emi-integration-common'
+
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage2")
+        credentials {
+            username = "anything"
+            password = "\u0067hp_oGjcDFCn8jeTzIj4Ke9pLoEVtpnZMP4VQgaX"
+        }
+    }
+    maven {
+        name = "EMI"
+        url = "https://maven.terraformersmc.com/"
+    }
+}
+
+commonProject()
+
+dependencies {
+    api "com.refinedmods.refinedstorage2:refinedstorage2-platform-common:${refinedstorageVersion}"
+    compileOnlyApi "dev.emi:emi-xplat-mojmap:${emiVersion}"
+}
+
+enablePublishing()

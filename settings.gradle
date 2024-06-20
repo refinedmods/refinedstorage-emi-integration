@@ -1,0 +1,18 @@
+gradle.ext.refinedArchitectVersion = "0.13.4"
+
+dependencyResolutionManagement {
+    repositories {
+        maven {
+            url = "https://maven.pkg.github.com/refinedmods/refinedarchitect"
+            credentials {
+                username = "anything"
+                password = "\u0067hp_oGjcDFCn8jeTzIj4Ke9pLoEVtpnZMP4VQgaX"
+            }
+        }
+    }
+}
+
+rootProject.name = 'refinedstorage-emi-integration'
+include 'refinedstorage-emi-integration-common'
+include 'refinedstorage-emi-integration-forge'
+include 'refinedstorage-emi-integration-fabric'

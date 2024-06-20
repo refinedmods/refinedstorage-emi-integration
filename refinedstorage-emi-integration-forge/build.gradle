@@ -1,0 +1,29 @@
+plugins {
+    id 'java-library'
+}
+
+archivesBaseName = 'refinedstorage-emi-integration-forge'
+
+forgeProject("refinedstorage_emi_integration", project(":refinedstorage-emi-integration-common"))
+
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage2")
+        credentials {
+            username = "anything"
+            password = "\u0067hp_oGjcDFCn8jeTzIj4Ke9pLoEVtpnZMP4VQgaX"
+        }
+    }
+    maven {
+        name = "EMI"
+        url = "https://maven.terraformersmc.com/"
+    }
+}
+
+dependencies {
+    api "com.refinedmods.refinedstorage2:refinedstorage2-platform-forge:${refinedstorageVersion}"
+    runtimeOnly "dev.emi:emi-neoforge:${emiVersion}"
+    compileOnlyApi "dev.emi:emi-neoforge:${emiVersion}:api"
+}
+
+enablePublishing()
