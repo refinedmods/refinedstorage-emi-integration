@@ -1,6 +1,7 @@
 package com.refinedmods.refinedstorage.emi.common;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.refinedmods.refinedstorage2.api.resource.list.ResourceList;
@@ -17,6 +18,7 @@ import dev.emi.emi.api.widget.Bounds;
 import dev.emi.emi.api.widget.SlotWidget;
 import dev.emi.emi.api.widget.Widget;
 import dev.emi.emi.runtime.EmiDrawContext;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 
@@ -72,7 +74,7 @@ class EmiRecipeHandlerImpl implements EmiRecipeHandler<CraftingGridContainerMenu
             .map(EmiStack::getItemStack)
             .filter(stack -> !stack.isEmpty())
             .map(ItemResource::ofItemStack)
-            .toList();
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -82,6 +84,7 @@ class EmiRecipeHandlerImpl implements EmiRecipeHandler<CraftingGridContainerMenu
             .map(this::getStacks)
             .toList();
         context.getScreenHandler().transferRecipe(inputs);
+        Minecraft.getInstance().setScreen(context.getScreen());
         return true;
     }
 
