@@ -57,6 +57,7 @@
     "refinedstorage2:1024b_fluid_storage_block",
     "refinedstorage2:fallback_security_card",
     "refinedstorage2:disk_drive",
+    "refinedstorage2:disk_interface",
     "refinedstorage2:raw_basic_processor",
     "refinedstorage2:wireless_transmitter",
     "refinedstorage2:raw_improved_processor",
