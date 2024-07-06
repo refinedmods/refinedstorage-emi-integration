@@ -85,7 +85,6 @@ class EmiRecipeHandlerImpl implements EmiRecipeHandler<CraftingGridContainerMenu
             .map(this::getStacks)
             .toList();
         context.getScreenHandler().transferRecipe(inputs);
-        Minecraft.getInstance().setScreen(context.getScreen());
         return true;
     }
 
