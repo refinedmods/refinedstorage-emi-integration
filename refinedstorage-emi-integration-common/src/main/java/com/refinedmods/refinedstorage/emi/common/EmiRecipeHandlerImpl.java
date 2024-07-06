@@ -1,12 +1,13 @@
 package com.refinedmods.refinedstorage.emi.common;
 
+import com.refinedmods.refinedstorage.api.resource.list.ResourceList;
+import com.refinedmods.refinedstorage.platform.common.grid.CraftingGridContainerMenu;
+import com.refinedmods.refinedstorage.platform.common.support.resource.ItemResource;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.refinedmods.refinedstorage2.api.resource.list.ResourceList;
-import com.refinedmods.refinedstorage2.platform.common.grid.CraftingGridContainerMenu;
-import com.refinedmods.refinedstorage2.platform.common.support.resource.ItemResource;
 import dev.emi.emi.api.recipe.EmiCraftingRecipe;
 import dev.emi.emi.api.recipe.EmiPlayerInventory;
 import dev.emi.emi.api.recipe.EmiRecipe;
@@ -30,7 +31,7 @@ class EmiRecipeHandlerImpl implements EmiRecipeHandler<CraftingGridContainerMenu
             .filter(resourceAmount -> resourceAmount.getResource() instanceof ItemResource)
             .map(resourceAmount -> EmiStack.of(
                 ((ItemResource) resourceAmount.getResource()).item(),
-                ((ItemResource) resourceAmount.getResource()).tag(),
+                ((ItemResource) resourceAmount.getResource()).components(),
                 resourceAmount.getAmount()
             )).toList());
     }

@@ -1,11 +1,12 @@
 package com.refinedmods.refinedstorage.emi.common;
 
-import com.refinedmods.refinedstorage2.platform.api.PlatformApi;
-import com.refinedmods.refinedstorage2.platform.api.support.resource.PlatformResourceKey;
-import com.refinedmods.refinedstorage2.platform.common.Platform;
-import com.refinedmods.refinedstorage2.platform.common.support.AbstractBaseScreen;
-import com.refinedmods.refinedstorage2.platform.common.support.containermenu.AbstractResourceContainerMenu;
-import com.refinedmods.refinedstorage2.platform.common.support.containermenu.ResourceSlot;
+import com.refinedmods.refinedstorage.platform.api.PlatformApi;
+import com.refinedmods.refinedstorage.platform.api.support.resource.PlatformResourceKey;
+import com.refinedmods.refinedstorage.platform.common.support.AbstractBaseScreen;
+import com.refinedmods.refinedstorage.platform.common.support.containermenu.AbstractResourceContainerMenu;
+import com.refinedmods.refinedstorage.platform.common.support.containermenu.ResourceSlot;
+import com.refinedmods.refinedstorage.platform.common.support.packet.c2s.C2SPackets;
+
 import dev.emi.emi.api.EmiDragDropHandler;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.runtime.EmiDrawContext;
@@ -52,10 +53,7 @@ class EmiDragDropHandlerImpl implements EmiDragDropHandler<Screen> {
         if (x < slotX || y < slotY || x > slotX + 16 || y > slotY + 16) {
             return false;
         }
-        Platform.INSTANCE.getClientToServerCommunications().sendResourceFilterSlotChange(
-            resource,
-            slot.index
-        );
+        C2SPackets.sendResourceFilterSlotChange(resource, slot.index);
         return true;
     }
 

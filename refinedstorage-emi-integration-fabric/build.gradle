@@ -29,9 +29,9 @@ repositories {
 }
 
 dependencies {
-    modApi "com.refinedmods.refinedstorage2:refinedstorage2-platform-fabric:${refinedstorageVersion}"
+    modApi "com.refinedmods.refinedstorage:refinedstorage-platform-fabric:${refinedstorageVersion}"
     modRuntimeOnly "dev.emi:emi-fabric:${emiVersion}"
-    modCompileOnlyApi "dev.emi:emi-fabric:${emiVersion}:api"
+    modCompileOnlyApi "dev.emi:emi-fabric:${emiVersion}"
 }
 
 enablePublishing()
