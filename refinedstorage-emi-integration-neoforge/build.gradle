@@ -2,9 +2,9 @@ plugins {
     id 'java-library'
 }
 
-archivesBaseName = 'refinedstorage-emi-integration-forge'
+archivesBaseName = 'refinedstorage-emi-integration-neoforge'
 
-forgeProject("refinedstorage_emi_integration", project(":refinedstorage-emi-integration-common"))
+neoForgeProject("refinedstorage_emi_integration", project(":refinedstorage-emi-integration-common"))
 
 repositories {
     maven {
@@ -21,9 +21,9 @@ repositories {
 }
 
 dependencies {
-    api "com.refinedmods.refinedstorage2:refinedstorage2-platform-forge:${refinedstorageVersion}"
+    api "com.refinedmods.refinedstorage:refinedstorage-platform-neoforge:${refinedstorageVersion}"
     runtimeOnly "dev.emi:emi-neoforge:${emiVersion}"
-    compileOnlyApi "dev.emi:emi-neoforge:${emiVersion}:api"
+    compileOnlyApi "dev.emi:emi-neoforge:${emiVersion}"
 }
 
 enablePublishing()

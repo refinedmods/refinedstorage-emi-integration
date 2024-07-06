@@ -1,8 +1,8 @@
 package com.refinedmods.refinedstorage.emi.forge;
 
 import com.refinedmods.refinedstorage.emi.common.Common;
+import com.refinedmods.refinedstorage.platform.api.PlatformApi;
 
-import com.refinedmods.refinedstorage2.platform.api.PlatformApi;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;

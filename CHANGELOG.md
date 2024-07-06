@@ -7,6 +7,16 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.3.0] - 2024-07-06
+
+### Added
+
+-   Search alias for the old name of the Disk Interface.
+
+### Fixed
+
+-   Support for Refined Storage v2.0.0-milestone.4.2.
+
 ## [0.2.1] - 2024-06-28
 
 ### Fixed
@@ -33,7 +43,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 -   Recipe transfer integration for the Crafting Grid.
 -   Grid / EMI search box synchronization options.
 
-[Unreleased]: https://github.com/refinedmods/refinedstorage-emi-integration/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/refinedmods/refinedstorage-emi-integration/compare/v0.3.0...HEAD
+
+[0.3.0]: https://github.com/refinedmods/refinedstorage-emi-integration/compare/v0.2.1...v0.3.0
 
 [0.2.1]: https://github.com/refinedmods/refinedstorage-emi-integration/compare/v0.2.0...v0.2.1
 
