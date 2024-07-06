@@ -7,31 +7,39 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Search alias for the old name of the Disk Interface.
+
+### Fixed
+
+- Support for Refined Storage v2.0.0-milestone.4.2.
+
 ## [0.2.1] - 2024-06-28
 
 ### Fixed
 
--   Support for Refined Storage v2.0.0-milestone.3.14.
+- Support for Refined Storage v2.0.0-milestone.3.14.
 
 ## [0.2.0] - 2024-06-20
 
 ### Added
 
--   Recipe defaults.
+- Recipe defaults.
 
 ### Fixed
 
--   Recipe transfer not working.
+- Recipe transfer not working.
 
 ## [0.1.0] - 2024-06-20
 
 ### Added
 
--   Support for EMI exclusion zones.
--   Support for EMI ghost ingredient dragging.
--   Support for using the R/U keys on Grid slots and filtering slots.
--   Recipe transfer integration for the Crafting Grid.
--   Grid / EMI search box synchronization options.
+- Support for EMI exclusion zones.
+- Support for EMI ghost ingredient dragging.
+- Support for using the R/U keys on Grid slots and filtering slots.
+- Recipe transfer integration for the Crafting Grid.
+- Grid / EMI search box synchronization options.
 
 [Unreleased]: https://github.com/refinedmods/refinedstorage-emi-integration/compare/v0.2.1...HEAD
 

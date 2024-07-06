@@ -1,0 +1,8 @@
+{
+  "aliases": [
+    {
+      "stacks": "item:refinedstorage:disk_interface",
+      "text": "alias.emi.refinedstorage1_disk_manipulator"
+    }
+  ]
+}

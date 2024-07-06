@@ -1,9 +1,10 @@
 package com.refinedmods.refinedstorage.emi.common;
 
+import com.refinedmods.refinedstorage.platform.common.support.AbstractBaseScreen;
+
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.refinedmods.refinedstorage2.platform.common.support.AbstractBaseScreen;
 import dev.emi.emi.api.EmiExclusionArea;
 import dev.emi.emi.api.widget.Bounds;
 import net.minecraft.client.gui.screens.Screen;
