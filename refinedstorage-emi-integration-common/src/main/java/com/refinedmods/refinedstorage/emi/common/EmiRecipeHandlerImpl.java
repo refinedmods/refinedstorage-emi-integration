@@ -19,7 +19,6 @@ import dev.emi.emi.api.widget.Bounds;
 import dev.emi.emi.api.widget.SlotWidget;
 import dev.emi.emi.api.widget.Widget;
 import dev.emi.emi.runtime.EmiDrawContext;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 
@@ -85,7 +84,6 @@ class EmiRecipeHandlerImpl implements EmiRecipeHandler<CraftingGridContainerMenu
             .map(this::getStacks)
             .toList();
         context.getScreenHandler().transferRecipe(inputs);
-        Minecraft.getInstance().setScreen(context.getScreen());
         return true;
     }
 
