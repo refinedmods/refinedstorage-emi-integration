@@ -14,6 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.Fluid;
 
 class EmiRecipeModIngredientConverter implements RecipeModIngredientConverter {
+    @SuppressWarnings("UnstableApiUsage")
     @Override
     public Optional<PlatformResourceKey> convertToResource(final Object ingredient) {
         if (ingredient instanceof FluidEmiStack fluid) {
