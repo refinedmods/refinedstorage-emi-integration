@@ -33,7 +33,7 @@ val refinedstorageVersion: String by project
 val emiVersion: String by project
 
 dependencies {
-    api("com.refinedmods.refinedstorage:refinedstorage-platform-neoforge:${refinedstorageVersion}")
+    api("com.refinedmods.refinedstorage:refinedstorage-neoforge:${refinedstorageVersion}")
     runtimeOnly("dev.emi:emi-neoforge:${emiVersion}")
     compileOnlyApi("dev.emi:emi-neoforge:${emiVersion}")
 }

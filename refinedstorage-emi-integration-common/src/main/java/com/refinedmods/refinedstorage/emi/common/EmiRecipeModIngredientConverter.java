@@ -1,9 +1,9 @@
 package com.refinedmods.refinedstorage.emi.common;
 
-import com.refinedmods.refinedstorage.platform.api.support.resource.PlatformResourceKey;
-import com.refinedmods.refinedstorage.platform.api.support.resource.RecipeModIngredientConverter;
-import com.refinedmods.refinedstorage.platform.common.support.resource.FluidResource;
-import com.refinedmods.refinedstorage.platform.common.support.resource.ItemResource;
+import com.refinedmods.refinedstorage.common.api.support.resource.PlatformResourceKey;
+import com.refinedmods.refinedstorage.common.api.support.resource.RecipeModIngredientConverter;
+import com.refinedmods.refinedstorage.common.support.resource.FluidResource;
+import com.refinedmods.refinedstorage.common.support.resource.ItemResource;
 
 import java.util.Optional;
 
@@ -14,6 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.Fluid;
 
 class EmiRecipeModIngredientConverter implements RecipeModIngredientConverter {
+    @SuppressWarnings("UnstableApiUsage")
     @Override
     public Optional<PlatformResourceKey> convertToResource(final Object ingredient) {
         if (ingredient instanceof FluidEmiStack fluid) {

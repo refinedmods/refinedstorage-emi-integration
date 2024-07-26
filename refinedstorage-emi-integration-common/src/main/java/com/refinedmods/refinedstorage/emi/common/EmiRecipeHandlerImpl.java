@@ -1,8 +1,8 @@
 package com.refinedmods.refinedstorage.emi.common;
 
 import com.refinedmods.refinedstorage.api.resource.list.ResourceList;
-import com.refinedmods.refinedstorage.platform.common.grid.CraftingGridContainerMenu;
-import com.refinedmods.refinedstorage.platform.common.support.resource.ItemResource;
+import com.refinedmods.refinedstorage.common.grid.CraftingGridContainerMenu;
+import com.refinedmods.refinedstorage.common.support.resource.ItemResource;
 
 import java.util.List;
 import java.util.stream.Collectors;

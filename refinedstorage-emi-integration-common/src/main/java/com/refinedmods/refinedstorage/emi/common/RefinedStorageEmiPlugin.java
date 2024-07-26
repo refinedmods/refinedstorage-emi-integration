@@ -1,6 +1,6 @@
 package com.refinedmods.refinedstorage.emi.common;
 
-import com.refinedmods.refinedstorage.platform.common.content.Menus;
+import com.refinedmods.refinedstorage.common.content.Menus;
 
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;

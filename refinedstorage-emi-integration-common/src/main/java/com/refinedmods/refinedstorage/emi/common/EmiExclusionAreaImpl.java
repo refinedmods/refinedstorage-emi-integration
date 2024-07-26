@@ -1,6 +1,6 @@
 package com.refinedmods.refinedstorage.emi.common;
 
-import com.refinedmods.refinedstorage.platform.common.support.AbstractBaseScreen;
+import com.refinedmods.refinedstorage.common.support.AbstractBaseScreen;
 
 import java.util.List;
 import java.util.function.Consumer;

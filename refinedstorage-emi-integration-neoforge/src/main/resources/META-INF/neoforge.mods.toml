@@ -14,7 +14,7 @@ EMI integration for Refined Storage.
 [[dependencies.refinedstorage_emi_integration]]
 modId = "refinedstorage"
 type = "required"
-versionRange = "2.0.0-milestone.4.2"
+versionRange = "2.0.0-milestone.4.5"
 side = "BOTH"
 [[dependencies.refinedstorage_emi_integration]]
 modId = "emi"

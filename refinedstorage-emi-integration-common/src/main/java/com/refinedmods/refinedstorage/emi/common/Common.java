@@ -1,6 +1,6 @@
 package com.refinedmods.refinedstorage.emi.common;
 
-import com.refinedmods.refinedstorage.platform.api.PlatformApi;
+import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
 
 import net.minecraft.resources.ResourceLocation;
 
@@ -10,13 +10,13 @@ public final class Common {
     private Common() {
     }
 
-    public static void init(final PlatformApi platformApi) {
-        platformApi.addIngredientConverter(new EmiRecipeModIngredientConverter());
-        platformApi.getGridSynchronizerRegistry().register(
+    public static void init(final RefinedStorageApi api) {
+        api.addIngredientConverter(new EmiRecipeModIngredientConverter());
+        api.getGridSynchronizerRegistry().register(
             ResourceLocation.fromNamespaceAndPath(MOD_ID, "emi"),
             new EmiGridSynchronizer(false)
         );
-        platformApi.getGridSynchronizerRegistry().register(
+        api.getGridSynchronizerRegistry().register(
             ResourceLocation.fromNamespaceAndPath(MOD_ID, "emi_two_way"),
             new EmiGridSynchronizer(true)
         );

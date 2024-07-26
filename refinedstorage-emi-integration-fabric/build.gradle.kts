@@ -41,7 +41,7 @@ val refinedstorageVersion: String by project
 val emiVersion: String by project
 
 dependencies {
-    modApi("com.refinedmods.refinedstorage:refinedstorage-platform-fabric:${refinedstorageVersion}")
+    modApi("com.refinedmods.refinedstorage:refinedstorage-fabric:${refinedstorageVersion}")
     modRuntimeOnly("dev.emi:emi-fabric:${emiVersion}")
     modCompileOnlyApi("dev.emi:emi-fabric:${emiVersion}")
 }

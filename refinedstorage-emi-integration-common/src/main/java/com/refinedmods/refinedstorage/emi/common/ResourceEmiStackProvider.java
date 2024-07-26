@@ -1,8 +1,8 @@
 package com.refinedmods.refinedstorage.emi.common;
 
-import com.refinedmods.refinedstorage.platform.api.PlatformApi;
-import com.refinedmods.refinedstorage.platform.api.support.resource.PlatformResourceKey;
-import com.refinedmods.refinedstorage.platform.common.support.AbstractBaseScreen;
+import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
+import com.refinedmods.refinedstorage.common.api.support.resource.PlatformResourceKey;
+import com.refinedmods.refinedstorage.common.support.AbstractBaseScreen;
 
 import dev.emi.emi.api.EmiStackProvider;
 import dev.emi.emi.api.stack.EmiIngredient;
@@ -19,7 +19,7 @@ class ResourceEmiStackProvider implements EmiStackProvider<Screen> {
         if (resource == null) {
             return EmiStackInteraction.EMPTY;
         }
-        return PlatformApi.INSTANCE.getIngredientConverter().convertToIngredient(resource).map(
+        return RefinedStorageApi.INSTANCE.getIngredientConverter().convertToIngredient(resource).map(
             ingredient -> new EmiStackInteraction((EmiIngredient) ingredient, null, false)
         ).orElse(EmiStackInteraction.EMPTY);
     }
