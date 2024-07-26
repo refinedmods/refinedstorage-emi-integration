@@ -31,6 +31,6 @@ val refinedstorageVersion: String by project
 val emiVersion: String by project
 
 dependencies {
-    api("com.refinedmods.refinedstorage:refinedstorage-platform-common:${refinedstorageVersion}")
+    api("com.refinedmods.refinedstorage:refinedstorage-common:${refinedstorageVersion}")
     compileOnlyApi("dev.emi:emi-xplat-mojmap:${emiVersion}")
 }

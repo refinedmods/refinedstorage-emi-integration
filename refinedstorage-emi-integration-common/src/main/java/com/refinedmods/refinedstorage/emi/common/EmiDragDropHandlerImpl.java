@@ -1,11 +1,11 @@
 package com.refinedmods.refinedstorage.emi.common;
 
-import com.refinedmods.refinedstorage.platform.api.PlatformApi;
-import com.refinedmods.refinedstorage.platform.api.support.resource.PlatformResourceKey;
-import com.refinedmods.refinedstorage.platform.common.support.AbstractBaseScreen;
-import com.refinedmods.refinedstorage.platform.common.support.containermenu.AbstractResourceContainerMenu;
-import com.refinedmods.refinedstorage.platform.common.support.containermenu.ResourceSlot;
-import com.refinedmods.refinedstorage.platform.common.support.packet.c2s.C2SPackets;
+import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
+import com.refinedmods.refinedstorage.common.api.support.resource.PlatformResourceKey;
+import com.refinedmods.refinedstorage.common.support.AbstractBaseScreen;
+import com.refinedmods.refinedstorage.common.support.containermenu.AbstractResourceContainerMenu;
+import com.refinedmods.refinedstorage.common.support.containermenu.ResourceSlot;
+import com.refinedmods.refinedstorage.common.support.packet.c2s.C2SPackets;
 
 import dev.emi.emi.api.EmiDragDropHandler;
 import dev.emi.emi.api.stack.EmiIngredient;
@@ -22,7 +22,7 @@ class EmiDragDropHandlerImpl implements EmiDragDropHandler<Screen> {
         if (!(baseScreen.getMenu() instanceof AbstractResourceContainerMenu menu)) {
             return false;
         }
-        return PlatformApi.INSTANCE.getIngredientConverter().convertToResource(stack)
+        return RefinedStorageApi.INSTANCE.getIngredientConverter().convertToResource(stack)
             .map(resource -> dropStack(menu, baseScreen, resource, x, y))
             .orElse(false);
     }
@@ -70,7 +70,7 @@ class EmiDragDropHandlerImpl implements EmiDragDropHandler<Screen> {
         if (!(baseScreen.getMenu() instanceof AbstractResourceContainerMenu menu)) {
             return;
         }
-        PlatformApi.INSTANCE.getIngredientConverter().convertToResource(dragged).ifPresent(resource -> {
+        RefinedStorageApi.INSTANCE.getIngredientConverter().convertToResource(dragged).ifPresent(resource -> {
             final EmiDrawContext context = EmiDrawContext.wrap(draw);
             for (final ResourceSlot slot : menu.getResourceSlots()) {
                 if (!slot.isFilter() || !slot.isValid(resource)) {
