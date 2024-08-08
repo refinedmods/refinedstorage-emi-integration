@@ -20,7 +20,7 @@ class GridEmiStackProvider implements EmiStackProvider<Screen> {
         if (resource == null) {
             return EmiStackInteraction.EMPTY;
         }
-        final PlatformResourceKey underlyingResource = resource.getUnderlyingResource();
+        final PlatformResourceKey underlyingResource = resource.getResourceForRecipeMods();
         if (underlyingResource == null) {
             return EmiStackInteraction.EMPTY;
         }

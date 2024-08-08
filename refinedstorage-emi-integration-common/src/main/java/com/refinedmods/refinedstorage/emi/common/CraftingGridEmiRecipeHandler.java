@@ -22,16 +22,16 @@ import dev.emi.emi.runtime.EmiDrawContext;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 
-class EmiRecipeHandlerImpl implements EmiRecipeHandler<CraftingGridContainerMenu> {
+class CraftingGridEmiRecipeHandler implements EmiRecipeHandler<CraftingGridContainerMenu> {
     @Override
     public EmiPlayerInventory getInventory(final AbstractContainerScreen<CraftingGridContainerMenu> screen) {
         final ResourceList available = screen.getMenu().getAvailableListForRecipeTransfer();
-        return new EmiPlayerInventory(available.getAll().stream()
-            .filter(resourceAmount -> resourceAmount.getResource() instanceof ItemResource)
+        return new EmiPlayerInventory(available.copyState().stream()
+            .filter(resourceAmount -> resourceAmount.resource() instanceof ItemResource)
             .map(resourceAmount -> EmiStack.of(
-                ((ItemResource) resourceAmount.getResource()).item(),
-                ((ItemResource) resourceAmount.getResource()).components(),
-                resourceAmount.getAmount()
+                ((ItemResource) resourceAmount.resource()).item(),
+                ((ItemResource) resourceAmount.resource()).components(),
+                resourceAmount.amount()
             )).toList());
     }
 
@@ -59,7 +59,7 @@ class EmiRecipeHandlerImpl implements EmiRecipeHandler<CraftingGridContainerMenu
     }
 
     private boolean isAvailable(final ResourceList available, final EmiIngredient input) {
-        final List<ItemResource> possibilities = getStacks(input);
+        final List<ItemResource> possibilities = getItems(input);
         for (final ItemResource possibility : possibilities) {
             if (available.remove(possibility, 1).isPresent()) {
                 return true;
@@ -68,8 +68,8 @@ class EmiRecipeHandlerImpl implements EmiRecipeHandler<CraftingGridContainerMenu
         return false;
     }
 
-    private List<ItemResource> getStacks(final EmiIngredient input) {
-        return input.getEmiStacks()
+    private List<ItemResource> getItems(final EmiIngredient ingredient) {
+        return ingredient.getEmiStacks()
             .stream()
             .map(EmiStack::getItemStack)
             .filter(stack -> !stack.isEmpty())
@@ -81,7 +81,7 @@ class EmiRecipeHandlerImpl implements EmiRecipeHandler<CraftingGridContainerMenu
     public boolean craft(final EmiRecipe recipe, final EmiCraftContext<CraftingGridContainerMenu> context) {
         final List<List<ItemResource>> inputs = recipe.getInputs()
             .stream()
-            .map(this::getStacks)
+            .map(this::getItems)
             .toList();
         context.getScreenHandler().transferRecipe(inputs);
         return true;
