@@ -13,7 +13,7 @@ import dev.emi.emi.runtime.EmiDrawContext;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 
-class EmiDragDropHandlerImpl implements EmiDragDropHandler<Screen> {
+class ResourceEmiDragDropHandler implements EmiDragDropHandler<Screen> {
     @Override
     public boolean dropStack(final Screen screen, final EmiIngredient stack, final int x, final int y) {
         if (!(screen instanceof AbstractBaseScreen<?> baseScreen)) {
@@ -45,7 +45,7 @@ class EmiDragDropHandlerImpl implements EmiDragDropHandler<Screen> {
                               final int x,
                               final int y,
                               final AbstractBaseScreen<?> baseScreen) {
-        if (!slot.isFilter() || !slot.isValid(resource)) {
+        if (!isSlotValid(resource, slot)) {
             return false;
         }
         final int slotX = baseScreen.getLeftPos() + slot.x;
@@ -73,12 +73,16 @@ class EmiDragDropHandlerImpl implements EmiDragDropHandler<Screen> {
         RefinedStorageApi.INSTANCE.getIngredientConverter().convertToResource(dragged).ifPresent(resource -> {
             final EmiDrawContext context = EmiDrawContext.wrap(draw);
             for (final ResourceSlot slot : menu.getResourceSlots()) {
-                if (!slot.isFilter() || !slot.isValid(resource)) {
+                if (!isSlotValid(resource, slot)) {
                     continue;
                 }
                 context.fill(baseScreen.getLeftPos() + slot.x, baseScreen.getTopPos() + slot.y, 17, 17, 0x8822BB33);
             }
         });
+    }
+
+    private static boolean isSlotValid(final PlatformResourceKey resource, final ResourceSlot slot) {
+        return slot.isFilter() && slot.isActive() && slot.isValid(resource);
     }
 }
 

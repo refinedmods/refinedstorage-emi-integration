@@ -1,5 +1,6 @@
 package com.refinedmods.refinedstorage.emi.common;
 
+import com.refinedmods.refinedstorage.api.resource.ResourceAmount;
 import com.refinedmods.refinedstorage.common.api.support.resource.PlatformResourceKey;
 import com.refinedmods.refinedstorage.common.api.support.resource.RecipeModIngredientConverter;
 import com.refinedmods.refinedstorage.common.support.resource.FluidResource;
@@ -22,6 +23,23 @@ class EmiRecipeModIngredientConverter implements RecipeModIngredientConverter {
         }
         if (ingredient instanceof ItemEmiStack item) {
             return Optional.of(new ItemResource((Item) item.getKey(), item.getComponentChanges()));
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<ResourceAmount> convertToResourceAmount(final Object ingredient) {
+        if (ingredient instanceof FluidEmiStack fluid) {
+            return Optional.of(new ResourceAmount(
+                new FluidResource((Fluid) fluid.getKey(), fluid.getComponentChanges()),
+                fluid.getAmount()
+            ));
+        }
+        if (ingredient instanceof ItemEmiStack item) {
+            return Optional.of(new ResourceAmount(
+                new ItemResource((Item) item.getKey(), item.getComponentChanges()),
+                item.getAmount()
+            ));
         }
         return Optional.empty();
     }
