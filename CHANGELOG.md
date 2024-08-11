@@ -7,6 +7,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.1] - 2024-08-11
+
+### Fixed
+
+-   Support for Refined Storage v2.0.0-milestone.4.7.
+
 ## [0.4.0] - 2024-08-08
 
 ### Added
@@ -57,7 +63,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 -   Recipe transfer integration for the Crafting Grid.
 -   Grid / EMI search box synchronization options.
 
-[Unreleased]: https://github.com/refinedmods/refinedstorage-emi-integration/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/refinedmods/refinedstorage-emi-integration/compare/v0.4.1...HEAD
+
+[0.4.1]: https://github.com/refinedmods/refinedstorage-emi-integration/compare/v0.4.0...v0.4.1
 
 [0.4.0]: https://github.com/refinedmods/refinedstorage-emi-integration/compare/v0.3.2...v0.4.0
 
