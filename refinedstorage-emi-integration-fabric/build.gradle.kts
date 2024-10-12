@@ -27,7 +27,6 @@ repositories {
 refinedarchitect {
     modId = "refinedstorage_emi_integration"
     fabric()
-    compileWithProject(project(":refinedstorage-emi-integration-common"))
     publishing {
         maven = true
     }
@@ -40,7 +39,13 @@ base {
 val refinedstorageVersion: String by project
 val emiVersion: String by project
 
+val commonJava by configurations.existing
+val commonResources by configurations.existing
+
 dependencies {
+    compileOnly(project(":refinedstorage-emi-integration-common"))
+    commonJava(project(path = ":refinedstorage-emi-integration-common", configuration = "commonJava"))
+    commonResources(project(path = ":refinedstorage-emi-integration-common", configuration = "commonResources"))
     modApi("com.refinedmods.refinedstorage:refinedstorage-fabric:${refinedstorageVersion}")
     modRuntimeOnly("dev.emi:emi-fabric:${emiVersion}")
     modCompileOnlyApi("dev.emi:emi-fabric:${emiVersion}")
