@@ -70,6 +70,8 @@
     "refinedstorage:destructor",
     "refinedstorage:regulator_upgrade",
     "refinedstorage:wrench",
-    "refinedstorage:raw_advanced_processor"
+    "refinedstorage:raw_advanced_processor",
+    "refinedstorage:pattern",
+    "refinedstorage:autocrafter"
   ]
 }
