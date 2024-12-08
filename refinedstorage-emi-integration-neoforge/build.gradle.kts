@@ -29,6 +29,7 @@ base {
 }
 
 val refinedstorageVersion: String by project
+val refinedstorageQuartzArsenalVersion: String by project
 val emiVersion: String by project
 
 val commonJava by configurations.existing
@@ -41,4 +42,6 @@ dependencies {
     api("com.refinedmods.refinedstorage:refinedstorage-neoforge:${refinedstorageVersion}")
     runtimeOnly("dev.emi:emi-neoforge:${emiVersion}")
     compileOnlyApi("dev.emi:emi-neoforge:${emiVersion}")
+    compileOnlyApi("com.refinedmods.refinedstorage:refinedstorage-quartz-arsenal-neoforge:${refinedstorageQuartzArsenalVersion}")
+    // runtimeOnly("com.refinedmods.refinedstorage:refinedstorage-quartz-arsenal-neoforge:${refinedstorageQuartzArsenalVersion}")
 }

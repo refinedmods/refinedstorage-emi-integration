@@ -37,6 +37,7 @@ base {
 }
 
 val refinedstorageVersion: String by project
+val refinedstorageQuartzArsenalVersion: String by project
 val emiVersion: String by project
 
 val commonJava by configurations.existing
@@ -49,4 +50,6 @@ dependencies {
     modApi("com.refinedmods.refinedstorage:refinedstorage-fabric:${refinedstorageVersion}")
     modRuntimeOnly("dev.emi:emi-fabric:${emiVersion}")
     modCompileOnlyApi("dev.emi:emi-fabric:${emiVersion}")
+    modCompileOnlyApi("com.refinedmods.refinedstorage:refinedstorage-quartz-arsenal-fabric:${refinedstorageQuartzArsenalVersion}")
+    // modRuntimeOnly("com.refinedmods.refinedstorage:refinedstorage-quartz-arsenal-fabric:${refinedstorageQuartzArsenalVersion}")
 }
