@@ -5,8 +5,8 @@ import com.refinedmods.refinedstorage.api.resource.ResourceAmount;
 import com.refinedmods.refinedstorage.api.resource.list.MutableResourceList;
 import com.refinedmods.refinedstorage.api.resource.list.MutableResourceListImpl;
 import com.refinedmods.refinedstorage.api.resource.list.ResourceList;
-import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
-import com.refinedmods.refinedstorage.common.grid.CraftingGridContainerMenu;
+import com.refinedmods.refinedstorage.common.api.RefinedStorageClientApi;
+import com.refinedmods.refinedstorage.common.grid.AbstractCraftingGridContainerMenu;
 import com.refinedmods.refinedstorage.common.support.resource.ItemResource;
 import com.refinedmods.refinedstorage.common.support.tooltip.HelpClientTooltipComponent;
 
@@ -35,13 +35,13 @@ import net.minecraft.network.chat.Component;
 import static com.refinedmods.refinedstorage.emi.common.Common.MOD_ID;
 import static java.util.Comparator.comparingLong;
 
-class CraftingGridEmiRecipeHandler extends AbstractEmiRecipeHandler<CraftingGridContainerMenu> {
+class CraftingGridEmiRecipeHandler<T extends AbstractCraftingGridContainerMenu> extends AbstractEmiRecipeHandler<T> {
     private static final Component CTRL_CLICK_TO_AUTOCRAFT = Component.translatable(
         "gui.%s.transfer.ctrl_click_to_autocraft".formatted(MOD_ID)
     );
 
     @Override
-    public EmiPlayerInventory getInventory(final AbstractContainerScreen<CraftingGridContainerMenu> screen) {
+    public EmiPlayerInventory getInventory(final AbstractContainerScreen<T> screen) {
         final ResourceList available = screen.getMenu().getAvailableListForRecipeTransfer();
         return new EmiPlayerInventory(available.copyState().stream()
             .filter(resourceAmount -> resourceAmount.resource() instanceof ItemResource)
@@ -58,7 +58,7 @@ class CraftingGridEmiRecipeHandler extends AbstractEmiRecipeHandler<CraftingGrid
     }
 
     @Override
-    public boolean canCraft(final EmiRecipe recipe, final EmiCraftContext<CraftingGridContainerMenu> context) {
+    public boolean canCraft(final EmiRecipe recipe, final EmiCraftContext<T> context) {
         return true;
     }
 
@@ -92,7 +92,7 @@ class CraftingGridEmiRecipeHandler extends AbstractEmiRecipeHandler<CraftingGrid
     }
 
     @Override
-    public boolean craft(final EmiRecipe recipe, final EmiCraftContext<CraftingGridContainerMenu> context) {
+    public boolean craft(final EmiRecipe recipe, final EmiCraftContext<T> context) {
         final MutableResourceList available = context.getScreenHandler().getAvailableListForRecipeTransfer();
         final List<TransferInput> transferInputs = recipe.getInputs()
             .stream()
@@ -102,7 +102,7 @@ class CraftingGridEmiRecipeHandler extends AbstractEmiRecipeHandler<CraftingGrid
         final TransferType transferType = getTransferType(transferInputs);
         if (transferType.canOpenAutocraftingPreview() && Screen.hasControlDown()) {
             final List<ResourceAmount> craftingRequests = createCraftingRequests(transferInputs);
-            RefinedStorageApi.INSTANCE.openAutocraftingPreview(craftingRequests, context.getScreen());
+            RefinedStorageClientApi.INSTANCE.openAutocraftingPreview(craftingRequests, context.getScreen());
             return false;
         }
         final List<List<ItemResource>> inputs = recipe.getInputs()
@@ -115,7 +115,7 @@ class CraftingGridEmiRecipeHandler extends AbstractEmiRecipeHandler<CraftingGrid
 
     @Override
     public void render(final EmiRecipe recipe,
-                       final EmiCraftContext<CraftingGridContainerMenu> craftContext,
+                       final EmiCraftContext<T> craftContext,
                        final List<Widget> widgets,
                        final GuiGraphics draw) {
         final EmiDrawContext context = EmiDrawContext.wrap(draw);
@@ -141,7 +141,7 @@ class CraftingGridEmiRecipeHandler extends AbstractEmiRecipeHandler<CraftingGrid
 
     @Override
     public List<ClientTooltipComponent> getTooltip(final EmiRecipe recipe,
-                                                   final EmiCraftContext<CraftingGridContainerMenu> context) {
+                                                   final EmiCraftContext<T> context) {
         final MutableResourceList available = context.getScreenHandler().getAvailableListForRecipeTransfer();
         final List<TransferInput> transferInputs = recipe.getInputs()
             .stream()

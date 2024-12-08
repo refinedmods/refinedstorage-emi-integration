@@ -15,7 +15,10 @@ public class RefinedStorageEmiPlugin implements EmiPlugin {
         registry.addGenericStackProvider(new ResourceEmiStackProvider());
         registry.addGenericDragDropHandler(new ResourceEmiDragDropHandler());
         registry.addGenericDragDropHandler(new FilterEmiDragDropHandler());
-        registry.addRecipeHandler(Menus.INSTANCE.getCraftingGrid(), new CraftingGridEmiRecipeHandler());
+        registry.addRecipeHandler(Menus.INSTANCE.getCraftingGrid(), new CraftingGridEmiRecipeHandler<>());
+        if (QuartzArsenalIntegration.isLoaded()) {
+            QuartzArsenalIntegration.load(registry);
+        }
         registry.addRecipeHandler(Menus.INSTANCE.getPatternGrid(), new PatternGridEmiRecipeHandler());
     }
 }

@@ -28,9 +28,11 @@ base {
 }
 
 val refinedstorageVersion: String by project
+val refinedstorageQuartzArsenalVersion: String by project
 val emiVersion: String by project
 
 dependencies {
     api("com.refinedmods.refinedstorage:refinedstorage-common:${refinedstorageVersion}")
     compileOnlyApi("dev.emi:emi-xplat-mojmap:${emiVersion}")
+    compileOnlyApi("com.refinedmods.refinedstorage:refinedstorage-quartz-arsenal-common:${refinedstorageQuartzArsenalVersion}")
 }
