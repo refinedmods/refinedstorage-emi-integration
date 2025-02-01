@@ -4,9 +4,9 @@
   "gui.refinedstorage_emi_integration.grid.synchronizer.two_way": "EMI двустороний",
   "gui.refinedstorage_emi_integration.grid.synchronizer.two_way.help": "Синхронизировать текст строки поиска с фильтром EMI, а фильтр EMI - с текстом строки поиска.",
   "alias.emi.refinedstorage1_disk_manipulator": "Дисковый манипулятор",
-  "gui.refinedstorage_emi_integration.transfer.missing_but_all_autocraftable": "Missing items, all are autocraftable",
-  "gui.refinedstorage_emi_integration.transfer.missing_but_some_autocraftable": "Missing items, some are autocraftable",
-  "gui.refinedstorage_emi_integration.transfer.ctrl_click_to_autocraft": "CTRL + click to autocraft",
-  "gui.refinedstorage_emi_integration.transfer.all_autocraftable": "All are autocraftable",
-  "gui.refinedstorage_emi_integration.transfer.some_autocraftable": "Some are autocraftable"
+  "gui.refinedstorage_emi_integration.transfer.missing_but_all_autocraftable": "Отсутствуют элементы, все они могут быть автоматически скрафчены",
+  "gui.refinedstorage_emi_integration.transfer.missing_but_some_autocraftable": "Отсутствуют элементы, некоторые из них могут быть автоматически скрафчены",
+  "gui.refinedstorage_emi_integration.transfer.ctrl_click_to_autocraft": "CTRL + клик для автокрафта",
+  "gui.refinedstorage_emi_integration.transfer.all_autocraftable": "Всё можно скрафтить автоматически",
+  "gui.refinedstorage_emi_integration.transfer.some_autocraftable": "Некоторые из них доступны для автокрафта"
 }
