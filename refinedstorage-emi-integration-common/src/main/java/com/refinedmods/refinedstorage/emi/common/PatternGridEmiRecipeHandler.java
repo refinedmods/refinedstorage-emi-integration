@@ -1,9 +1,10 @@
 package com.refinedmods.refinedstorage.emi.common;
 
-import com.refinedmods.refinedstorage.api.grid.view.GridView;
 import com.refinedmods.refinedstorage.api.resource.ResourceAmount;
 import com.refinedmods.refinedstorage.api.resource.ResourceKey;
+import com.refinedmods.refinedstorage.api.resource.repository.ResourceRepository;
 import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
+import com.refinedmods.refinedstorage.common.api.grid.view.GridResource;
 import com.refinedmods.refinedstorage.common.autocrafting.patterngrid.PatternGridContainerMenu;
 import com.refinedmods.refinedstorage.common.support.resource.ItemResource;
 
@@ -137,7 +138,7 @@ class PatternGridEmiRecipeHandler extends AbstractEmiRecipeHandler<PatternGridCo
                        final GuiGraphics draw) {
         final EmiDrawContext context = EmiDrawContext.wrap(draw);
         RenderSystem.enableDepthTest();
-        final GridView view = craftContext.getScreenHandler().getView();
+        final ResourceRepository<GridResource> repository = craftContext.getScreenHandler().getRepository();
         for (final Widget widget : widgets) {
             if (!(widget instanceof SlotWidget slotWidget)) {
                 continue;
@@ -147,7 +148,7 @@ class PatternGridEmiRecipeHandler extends AbstractEmiRecipeHandler<PatternGridCo
             if (slotWidget.getRecipe() == null && !stack.isEmpty()) {
                 final boolean autocraftable = getResourceAmounts(stack)
                     .stream()
-                    .anyMatch(resourceAmount -> view.isAutocraftable(resourceAmount.resource()));
+                    .anyMatch(resourceAmount -> repository.isSticky(resourceAmount.resource()));
                 if (autocraftable) {
                     context.fill(bounds.x(), bounds.y(), bounds.width(), bounds.height(), AUTOCRAFTABLE_COLOR);
                 }
@@ -158,19 +159,19 @@ class PatternGridEmiRecipeHandler extends AbstractEmiRecipeHandler<PatternGridCo
     @Override
     public List<ClientTooltipComponent> getTooltip(final EmiRecipe recipe,
                                                    final EmiCraftContext<PatternGridContainerMenu> context) {
-        final GridView view = context.getScreenHandler().getView();
+        final ResourceRepository<GridResource> view = context.getScreenHandler().getRepository();
         final List<List<ResourceKey>> inputs = recipe.getInputs()
             .stream()
             .filter(input -> !input.isEmpty())
             .map(PatternGridEmiRecipeHandler::getResources)
             .toList();
         final boolean allAutocraftable = inputs.stream()
-            .allMatch(possibilities -> possibilities.stream().anyMatch(view::isAutocraftable));
+            .allMatch(possibilities -> possibilities.stream().anyMatch(view::isSticky));
         if (allAutocraftable) {
             return ALL_AUTOCRAFTABLE_TOOLTIP;
         }
         final boolean someAutocraftable = inputs.stream()
-            .anyMatch(possibilities -> possibilities.stream().anyMatch(view::isAutocraftable));
+            .anyMatch(possibilities -> possibilities.stream().anyMatch(view::isSticky));
         if (someAutocraftable) {
             return SOME_AUTOCRAFTABLE_TOOLTIP;
         }

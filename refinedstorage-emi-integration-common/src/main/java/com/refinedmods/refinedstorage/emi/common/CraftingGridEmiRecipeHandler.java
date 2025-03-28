@@ -1,11 +1,12 @@
 package com.refinedmods.refinedstorage.emi.common;
 
-import com.refinedmods.refinedstorage.api.grid.view.GridView;
 import com.refinedmods.refinedstorage.api.resource.ResourceAmount;
 import com.refinedmods.refinedstorage.api.resource.list.MutableResourceList;
 import com.refinedmods.refinedstorage.api.resource.list.MutableResourceListImpl;
 import com.refinedmods.refinedstorage.api.resource.list.ResourceList;
+import com.refinedmods.refinedstorage.api.resource.repository.ResourceRepository;
 import com.refinedmods.refinedstorage.common.api.RefinedStorageClientApi;
+import com.refinedmods.refinedstorage.common.api.grid.view.GridResource;
 import com.refinedmods.refinedstorage.common.grid.AbstractCraftingGridContainerMenu;
 import com.refinedmods.refinedstorage.common.support.resource.ItemResource;
 import com.refinedmods.refinedstorage.common.support.tooltip.HelpClientTooltipComponent;
@@ -62,19 +63,19 @@ class CraftingGridEmiRecipeHandler<T extends AbstractCraftingGridContainerMenu> 
         return true;
     }
 
-    private static TransferInput toTransferInput(final GridView view,
+    private static TransferInput toTransferInput(final ResourceRepository<GridResource> repository,
                                                  final MutableResourceList available,
                                                  final EmiIngredient input) {
         final List<ItemResource> possibilities = getItems(input);
         for (final ItemResource possibility : possibilities) {
-            if (available.remove(possibility, 1).isPresent()) {
+            if (available.remove(possibility, 1) != null) {
                 return new TransferInput(TransferInputType.AVAILABLE, null);
             }
         }
         final List<ItemResource> autocraftingPossibilities = possibilities
             .stream()
-            .filter(view::isAutocraftable)
-            .sorted(comparingLong(view::getAmount))
+            .filter(repository::isSticky)
+            .sorted(comparingLong(repository::getAmount))
             .toList();
         if (!autocraftingPossibilities.isEmpty()) {
             return new TransferInput(TransferInputType.AUTOCRAFTABLE, autocraftingPossibilities.getFirst());
@@ -97,7 +98,7 @@ class CraftingGridEmiRecipeHandler<T extends AbstractCraftingGridContainerMenu> 
         final List<TransferInput> transferInputs = recipe.getInputs()
             .stream()
             .filter(input -> !input.isEmpty())
-            .map(input -> toTransferInput(context.getScreenHandler().getView(), available, input))
+            .map(input -> toTransferInput(context.getScreenHandler().getRepository(), available, input))
             .toList();
         final TransferType transferType = getTransferType(transferInputs);
         if (transferType.canOpenAutocraftingPreview() && Screen.hasControlDown()) {
@@ -121,7 +122,7 @@ class CraftingGridEmiRecipeHandler<T extends AbstractCraftingGridContainerMenu> 
         final EmiDrawContext context = EmiDrawContext.wrap(draw);
         RenderSystem.enableDepthTest();
         final MutableResourceList available = craftContext.getScreenHandler().getAvailableListForRecipeTransfer();
-        final GridView view = craftContext.getScreenHandler().getView();
+        final ResourceRepository<GridResource> repository = craftContext.getScreenHandler().getRepository();
         for (final Widget widget : widgets) {
             if (!(widget instanceof SlotWidget slotWidget)) {
                 continue;
@@ -129,7 +130,7 @@ class CraftingGridEmiRecipeHandler<T extends AbstractCraftingGridContainerMenu> 
             final EmiIngredient stack = slotWidget.getStack();
             final Bounds bounds = slotWidget.getBounds();
             if (slotWidget.getRecipe() == null && !stack.isEmpty()) {
-                final TransferInput transferInput = toTransferInput(view, available, stack);
+                final TransferInput transferInput = toTransferInput(repository, available, stack);
                 if (transferInput.type() == TransferInputType.MISSING) {
                     context.fill(bounds.x(), bounds.y(), bounds.width(), bounds.height(), 0x44FF0000);
                 } else if (transferInput.type() == TransferInputType.AUTOCRAFTABLE) {
@@ -146,7 +147,7 @@ class CraftingGridEmiRecipeHandler<T extends AbstractCraftingGridContainerMenu> 
         final List<TransferInput> transferInputs = recipe.getInputs()
             .stream()
             .filter(input -> !input.isEmpty())
-            .map(input -> toTransferInput(context.getScreenHandler().getView(), available, input))
+            .map(input -> toTransferInput(context.getScreenHandler().getRepository(), available, input))
             .toList();
         final TransferType transferType = getTransferType(transferInputs);
         return calculateTooltip(transferType);
