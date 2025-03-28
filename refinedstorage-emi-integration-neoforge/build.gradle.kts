@@ -21,6 +21,8 @@ refinedarchitect {
     neoForge()
     publishing {
         maven = true
+        curseForge = "1230691"
+        modrinth = "TCSDwmbf"
     }
 }
 

@@ -1,7 +1,7 @@
 package com.refinedmods.refinedstorage.emi.common;
 
 import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
-import com.refinedmods.refinedstorage.common.api.grid.view.PlatformGridResource;
+import com.refinedmods.refinedstorage.common.api.grid.view.GridResource;
 import com.refinedmods.refinedstorage.common.api.support.resource.PlatformResourceKey;
 import com.refinedmods.refinedstorage.common.grid.screen.AbstractGridScreen;
 
@@ -16,7 +16,7 @@ class GridEmiStackProvider implements EmiStackProvider<Screen> {
         if (!(screen instanceof AbstractGridScreen<?> gridScreen)) {
             return EmiStackInteraction.EMPTY;
         }
-        final PlatformGridResource resource = gridScreen.getCurrentGridResource();
+        final GridResource resource = gridScreen.getCurrentGridResource();
         if (resource == null) {
             return EmiStackInteraction.EMPTY;
         }

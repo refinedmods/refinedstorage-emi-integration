@@ -72,6 +72,9 @@
     "refinedstorage:wrench",
     "refinedstorage:raw_advanced_processor",
     "refinedstorage:pattern",
-    "refinedstorage:autocrafter"
+    "refinedstorage:autocrafter",
+    "refinedstorage:autocrafter_manager",
+    "refinedstorage:autocrafting_monitor",
+    "refinedstorage:wireless_autocrafting_monitor"
   ]
 }
