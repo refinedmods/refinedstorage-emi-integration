@@ -30,7 +30,9 @@ refinedarchitect {
     publishing {
         maven = true
         curseForge = "1230691"
+        curseForgeRequiredDependencies = listOf("fabric-api", "refined-storage", "emi")
         modrinth = "TCSDwmbf"
+        modrinthRequiredDependencies = listOf("fabric-api", "refined-storage", "emi")
     }
 }
 

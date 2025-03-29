@@ -22,7 +22,9 @@ refinedarchitect {
     publishing {
         maven = true
         curseForge = "1230691"
+        curseForgeRequiredDependencies = listOf("refined-storage", "emi")
         modrinth = "TCSDwmbf"
+        modrinthRequiredDependencies = listOf("refined-storage", "emi")
     }
 }
 
